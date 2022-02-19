@@ -14,7 +14,7 @@ import java.util.*;
 
 public class SpectaThor extends JavaPlugin {
 
-    public Map<UUID, List<Location>> positions = new HashMap<>();
+    public Map<UUID, Stack<Location>> positions = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -41,17 +41,16 @@ public class SpectaThor extends JavaPlugin {
 
     public void savePosition(Player player) {
         UUID uuid = player.getUniqueId();
-        List<Location> playerPositions;
+        Stack<Location> playerPositions;
 
         if (positions.get(uuid) != null) {
             playerPositions = positions.get(uuid);
         } else {
-            playerPositions = new ArrayList<>();
+            playerPositions = new Stack<>();
         }
 
         playerPositions.add(player.getLocation());
 
-        positions.remove(uuid);
         positions.put(uuid, playerPositions);
     }
 
@@ -69,14 +68,13 @@ public class SpectaThor extends JavaPlugin {
     public boolean backPosition(Player player) {
         UUID uuid = player.getUniqueId();
         if (positions.get(uuid) != null) {
-            List<Location> playerPositions = positions.get(uuid);
+            Stack<Location> playerPositions = positions.get(uuid);
 
-            int index = playerPositions.size()-1;
-            if (index == -1) return false;
+            Location position = playerPositions.pop();
+            if (position == null) {
+                return false;
+            }
 
-            Location position = playerPositions.remove(index);
-
-            positions.remove(uuid);
             positions.put(uuid, playerPositions);
 
             player.teleport(position);
