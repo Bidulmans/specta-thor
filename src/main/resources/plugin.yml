@@ -1,0 +1,17 @@
+main: eu.bidulaxstudio.spectathor.SpectaThor
+name: SpectaThor
+version: 1.0.0
+author: BidulaxStudio
+commands:
+  spy:
+    description: Changes your gamemode to spectator mode
+    permission: spectathor.spy
+    usage: /spy
+  back:
+    description: Teleports you to your last /spy
+    permission: spectathor.spy
+    usage: /back
+permissions:
+  spectathor.spy:
+    description: Allows you to use the /spy and /back commands
+    default: op
