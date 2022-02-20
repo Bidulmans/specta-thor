@@ -18,6 +18,7 @@ public class SpectaThor extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
         registerCommands();
         registerEvents();
     }
