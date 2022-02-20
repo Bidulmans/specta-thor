@@ -5,5 +5,6 @@ messages:
   unspySuccess: "You're now in the default gamemode."
   backSuccess: "You've been teleported to your last /spy !"
   backFail: "There are no more positions saved."
+  antiSuffocation: "Warning ! You can suffocate if you reappear here... Type /spy force to do it anyway."
 settings:
   nightVision: true

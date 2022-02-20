@@ -64,7 +64,7 @@ public class SpectaThor extends JavaPlugin {
 
             savePosition(player);
 
-            if (getConfig().getBoolean("settings.nightVision.enabled")) {
+            if (getConfig().getBoolean("settings.nightVision")) {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000000, 255, false, false));
             }
 
@@ -73,7 +73,7 @@ public class SpectaThor extends JavaPlugin {
         } else {
             player.setGameMode(getServer().getDefaultGameMode());
 
-            if (getConfig().getBoolean("settings.nightVision.enabled")) {
+            if (getConfig().getBoolean("settings.nightVision")) {
                 player.removePotionEffect(PotionEffectType.NIGHT_VISION);
             }
 
