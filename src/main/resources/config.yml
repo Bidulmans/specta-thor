@@ -5,3 +5,5 @@ messages:
   unspySuccess: "You're now in the default gamemode."
   backSuccess: "You've been teleported to your last /spy !"
   backFail: "There are no more positions saved."
+settings:
+  nightVision: true
