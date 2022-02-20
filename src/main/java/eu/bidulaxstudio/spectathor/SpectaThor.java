@@ -37,7 +37,8 @@ public class SpectaThor extends JavaPlugin {
     }
 
     public void sendConfigMessage(CommandSender target, String configPath) {
-        sendPluginMessage(target, getConfig().getString(configPath));
+        String message = getConfig().getString(configPath);
+        if (!message.equals("null")) sendPluginMessage(target, getConfig().getString(configPath));
     }
 
     public void savePosition(Player player) {
@@ -71,8 +72,10 @@ public class SpectaThor extends JavaPlugin {
         if (positions.get(uuid) != null) {
             Stack<Location> playerPositions = positions.get(uuid);
 
-            Location position = playerPositions.pop();
-            if (position == null) {
+            Location position;
+            if (playerPositions.size() != 0) {
+                position = playerPositions.pop();
+            } else {
                 return false;
             }
 
