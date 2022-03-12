@@ -2,7 +2,6 @@ package eu.bidulaxstudio.spectathor;
 
 import eu.bidulaxstudio.spectathor.commands.Back;
 import eu.bidulaxstudio.spectathor.commands.Spy;
-import eu.bidulaxstudio.spectathor.listeners.SessionEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -22,16 +21,11 @@ public class SpectaThor extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         registerCommands();
-        registerEvents();
     }
 
     private void registerCommands() {
         getCommand("spy").setExecutor(new Spy(this));
         getCommand("back").setExecutor(new Back(this));
-    }
-
-    private void registerEvents() {
-        getServer().getPluginManager().registerEvents(new SessionEvent(this), this);
     }
 
     public void sendPluginMessage(CommandSender target, String message) {
