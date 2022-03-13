@@ -1,5 +1,4 @@
 messages:
-  noPermission: "You don't have enough permissions to do that..."
   notAPlayer: "You don't have any legs or hands, I think you're not a player..."
   spySuccess: "You're now in Spectator Mode !"
   unspySuccess: "You're now in the default gamemode."
@@ -7,3 +6,4 @@ messages:
   backFail: "There are no more positions saved."
 settings:
   nightVision: true
+  unspyGamemode: default

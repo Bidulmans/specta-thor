@@ -16,10 +16,6 @@ public class Spy implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!sender.hasPermission("spectathor.spy")) {
-            main.sendConfigMessage(sender, "messages.noPermission");
-            return true;
-        }
         if (!(sender instanceof Player)) {
             main.sendConfigMessage(sender, "messages.notAPlayer");
             return true;

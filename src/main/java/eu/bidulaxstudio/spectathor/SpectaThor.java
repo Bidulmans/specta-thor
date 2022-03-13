@@ -2,6 +2,8 @@ package eu.bidulaxstudio.spectathor;
 
 import eu.bidulaxstudio.spectathor.commands.Back;
 import eu.bidulaxstudio.spectathor.commands.Spy;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -29,12 +31,16 @@ public class SpectaThor extends JavaPlugin {
     }
 
     public void sendPluginMessage(CommandSender target, String message) {
-        target.sendMessage(ChatColor.GOLD + "SpectaThor: " + ChatColor.WHITE + message);
+        if (target instanceof Player player) {
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
+        } else {
+            target.sendMessage(message);
+        }
     }
 
     public void sendConfigMessage(CommandSender target, String configPath) {
         String message = getConfig().getString(configPath);
-        if (!message.equals("null")) sendPluginMessage(target, getConfig().getString(configPath));
+        if (!message.isEmpty()) sendPluginMessage(target, getConfig().getString(configPath));
     }
 
     public void savePosition(Player player) {
@@ -65,7 +71,12 @@ public class SpectaThor extends JavaPlugin {
             return true;
 
         } else {
-            player.setGameMode(getServer().getDefaultGameMode());
+            String unspyGamemode = getConfig().getString("settings.unspyGamemode").toUpperCase();
+            GameMode gameMode;
+            if (unspyGamemode.equalsIgnoreCase("default")) gameMode = getServer().getDefaultGameMode();
+            else gameMode = GameMode.valueOf(unspyGamemode);
+
+            player.setGameMode(gameMode);
 
             if (getConfig().getBoolean("settings.nightVision")) {
                 player.removePotionEffect(PotionEffectType.NIGHT_VISION);
