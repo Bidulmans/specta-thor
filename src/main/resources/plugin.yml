@@ -16,3 +16,6 @@ permissions:
   spectathor.spy:
     description: Allows you to use the /spy and /back commands
     default: op
+  spectathor.autospy:
+    description: Sets you automatically in spectator mode when you log in
+    default: op

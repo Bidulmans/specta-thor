@@ -2,9 +2,9 @@ package eu.bidulaxstudio.spectathor;
 
 import eu.bidulaxstudio.spectathor.commands.Back;
 import eu.bidulaxstudio.spectathor.commands.Spy;
+import eu.bidulaxstudio.spectathor.listeners.PlayerJoin;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -23,11 +23,16 @@ public class SpectaThor extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         registerCommands();
+        registerListeners();
     }
 
     private void registerCommands() {
         getCommand("spy").setExecutor(new Spy(this));
         getCommand("back").setExecutor(new Back(this));
+    }
+
+    private void registerListeners() {
+        getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
     }
 
     public void sendPluginMessage(CommandSender target, String message) {
@@ -38,9 +43,45 @@ public class SpectaThor extends JavaPlugin {
         }
     }
 
-    public void sendConfigMessage(CommandSender target, String configPath) {
-        String message = getConfig().getString(configPath);
-        if (!message.isEmpty()) sendPluginMessage(target, getConfig().getString(configPath));
+    public void sendConfigMessage(CommandSender target, String path) {
+        String message = getConfigString(path);
+        if (!message.isEmpty()) {
+            sendPluginMessage(target, message);
+        }
+    }
+
+    public String getConfigString(String path) {
+        String message = getConfig().getString(path);
+        return message == null ? "" : message;
+    }
+
+    public boolean invertPlayer(Player player, boolean forceSpy) {
+        // Spy player
+        if (player.getGameMode() != GameMode.SPECTATOR || forceSpy) {
+            player.setGameMode(GameMode.SPECTATOR);
+
+            savePosition(player);
+
+            if (getConfig().getBoolean("settings.nightVision")) {
+                player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000000, 255, false, false));
+            }
+
+            return true;
+        // Unspy player
+        } else {
+            String unspyGameMode = getConfig().getString("settings.unspyGamemode").toUpperCase();
+            GameMode gameMode;
+            if (unspyGameMode.equalsIgnoreCase("default")) gameMode = getServer().getDefaultGameMode();
+            else gameMode = GameMode.valueOf(unspyGameMode);
+
+            player.setGameMode(gameMode);
+
+            if (getConfig().getBoolean("settings.nightVision")) {
+                player.removePotionEffect(PotionEffectType.NIGHT_VISION);
+            }
+
+            return false;
+        }
     }
 
     public void savePosition(Player player) {
@@ -56,34 +97,6 @@ public class SpectaThor extends JavaPlugin {
         playerPositions.add(player.getLocation());
 
         positions.put(uuid, playerPositions);
-    }
-
-    public boolean spyPlayer(Player player) {
-        if (player.getGameMode() != GameMode.SPECTATOR) {
-            player.setGameMode(GameMode.SPECTATOR);
-
-            savePosition(player);
-
-            if (getConfig().getBoolean("settings.nightVision")) {
-                player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000000, 255, false, false));
-            }
-
-            return true;
-
-        } else {
-            String unspyGamemode = getConfig().getString("settings.unspyGamemode").toUpperCase();
-            GameMode gameMode;
-            if (unspyGamemode.equalsIgnoreCase("default")) gameMode = getServer().getDefaultGameMode();
-            else gameMode = GameMode.valueOf(unspyGamemode);
-
-            player.setGameMode(gameMode);
-
-            if (getConfig().getBoolean("settings.nightVision")) {
-                player.removePotionEffect(PotionEffectType.NIGHT_VISION);
-            }
-
-            return false;
-        }
     }
 
     public boolean backPosition(Player player) {

@@ -16,14 +16,12 @@ public class Spy implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             main.sendConfigMessage(sender, "messages.notAPlayer");
             return true;
         }
 
-        Player player = (Player) sender;
-
-        if (main.spyPlayer(player)) {
+        if (main.invertPlayer(player, false)) {
             main.sendConfigMessage(player, "messages.spySuccess");
         } else {
             main.sendConfigMessage(player, "messages.unspySuccess");
