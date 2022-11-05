@@ -8,17 +8,17 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerJoin implements Listener {
 
-    private final SpectaThor main;
+    private final SpectaThor plugin;
 
-    public PlayerJoin(SpectaThor main) {
-        this.main = main;
+    public PlayerJoin(SpectaThor plugin) {
+        this.plugin = plugin;
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (player.hasPermission("spectathor.autospy")) {
-            main.invertPlayer(player, true);
+            plugin.invertPlayer(player, true);
         }
     }
 

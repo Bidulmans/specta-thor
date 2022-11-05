@@ -1,9 +1,15 @@
 messages:
-  notAPlayer: "You don't have any legs or hands, I think you're not a player..."
-  spySuccess: "You're now in Spectator Mode !"
-  unspySuccess: "You're now in the default gamemode."
-  backSuccess: "You've been teleported to your last /spy !"
-  backFail: "There are no more positions saved."
+  not-a-player: "§cYou don't have any legs or hands, I think you're not a player..."
+  spy-success: "§aYou're now in spectator mode !"
+  spy-player-success: "§aYou're now spectating {PLAYER}."
+  spy-player-fail: "§c{PLAYER} doesn't exist or isn't online."
+  unspy-success: "§aYou're now in the default gamemode."
+  back-success: "§aYou've been teleported to your last /spy !"
+  back-fail: "§cThere are no more positions saved."
 settings:
-  nightVision: true
-  unspyGamemode: default
+  # Make the spectators see in the dark (useful for the caves, but it's your choice)
+  night-vision: true
+  # Allows the teleportation to a player when one is specified in the /spy command
+  spy-players: true
+  # Define the gamemode in which the players must be when they are not in spy mode anymore
+  unspy-gamemode: default

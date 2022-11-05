@@ -8,23 +8,23 @@ import org.bukkit.entity.Player;
 
 public class Back implements CommandExecutor {
 
-    private final SpectaThor main;
+    private final SpectaThor plugin;
 
-    public Back(SpectaThor main) {
-        this.main = main;
+    public Back(SpectaThor plugin) {
+        this.plugin = plugin;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            main.sendConfigMessage(sender, "messages.notAPlayer");
+            plugin.sendConfigMessage(sender, "messages.not-a-player");
             return true;
         }
 
-        if (main.backPosition(player)) {
-            main.sendConfigMessage(player, "messages.backSuccess");
+        if (plugin.backPosition(player)) {
+            plugin.sendConfigMessage(player, "messages.back-success");
         } else {
-            main.sendConfigMessage(player, "messages.backFail");
+            plugin.sendConfigMessage(player, "messages.back-fail");
         }
 
         return true;

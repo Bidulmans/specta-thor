@@ -1,15 +1,15 @@
 main: eu.bidulaxstudio.spectathor.SpectaThor
 name: SpectaThor
-version: 1.0.0
-api-version: 1.18
+version: 1.0
+api-version: 1.19
 author: BidulaxStudio
 commands:
   spy:
-    description: Changes your gamemode to spectator mode
+    description: Change your gamemode to spectator mode
     permission: spectathor.spy
     usage: /spy
   back:
-    description: Teleports you to your last /spy
+    description: Teleport you to your last /spy
     permission: spectathor.spy
     usage: /back
 permissions:

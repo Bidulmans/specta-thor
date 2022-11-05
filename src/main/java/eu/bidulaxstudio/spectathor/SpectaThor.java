@@ -62,21 +62,21 @@ public class SpectaThor extends JavaPlugin {
 
             savePosition(player);
 
-            if (getConfig().getBoolean("settings.nightVision")) {
+            if (getConfig().getBoolean("settings.night-vision")) {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000000, 255, false, false));
             }
 
             return true;
         // Unspy player
         } else {
-            String unspyGameMode = getConfig().getString("settings.unspyGamemode").toUpperCase();
+            String unspyGameMode = getConfig().getString("settings.unspy-gamemode").toUpperCase();
             GameMode gameMode;
             if (unspyGameMode.equalsIgnoreCase("default")) gameMode = getServer().getDefaultGameMode();
             else gameMode = GameMode.valueOf(unspyGameMode);
 
             player.setGameMode(gameMode);
 
-            if (getConfig().getBoolean("settings.nightVision")) {
+            if (getConfig().getBoolean("settings.night-vision")) {
                 player.removePotionEffect(PotionEffectType.NIGHT_VISION);
             }
 
