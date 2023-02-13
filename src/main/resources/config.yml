@@ -11,5 +11,7 @@ settings:
   night-vision: true
   # Allows the teleportation to a player when one is specified in the /spy command
   spy-players: true
+  # Hide achievements done while spectating
+  hide-achievements: false
   # Define the gamemode in which the players must be when they are not in spy mode anymore
   unspy-gamemode: default

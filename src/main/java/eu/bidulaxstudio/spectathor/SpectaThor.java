@@ -2,6 +2,7 @@ package eu.bidulaxstudio.spectathor;
 
 import eu.bidulaxstudio.spectathor.commands.Back;
 import eu.bidulaxstudio.spectathor.commands.Spy;
+import eu.bidulaxstudio.spectathor.listeners.AchievementDone;
 import eu.bidulaxstudio.spectathor.listeners.PlayerJoin;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -33,6 +34,9 @@ public class SpectaThor extends JavaPlugin {
 
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
+        if (getConfig().getBoolean("settings.hide-achievements")) {
+            getServer().getPluginManager().registerEvents(new AchievementDone(), this);
+        }
     }
 
     public void sendPluginMessage(CommandSender target, String message) {
