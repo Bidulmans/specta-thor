@@ -1,8 +1,8 @@
-main: eu.bidulaxstudio.spectathor.SpectaThor
+main: eu.bidulman.spectathor.SpectaThor
 name: SpectaThor
 version: 1.0
 api-version: 1.19
-author: BidulaxStudio
+author: Bidulman
 commands:
   spy:
     description: Change your gamemode to spectator mode

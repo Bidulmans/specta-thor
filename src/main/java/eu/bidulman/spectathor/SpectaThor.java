@@ -1,9 +1,9 @@
-package eu.bidulaxstudio.spectathor;
+package eu.bidulman.spectathor;
 
-import eu.bidulaxstudio.spectathor.commands.Back;
-import eu.bidulaxstudio.spectathor.commands.Spy;
-import eu.bidulaxstudio.spectathor.listeners.AchievementDone;
-import eu.bidulaxstudio.spectathor.listeners.PlayerJoin;
+import eu.bidulman.spectathor.commands.Back;
+import eu.bidulman.spectathor.commands.Spy;
+import eu.bidulman.spectathor.listeners.AchievementDone;
+import eu.bidulman.spectathor.listeners.PlayerJoin;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.GameMode;

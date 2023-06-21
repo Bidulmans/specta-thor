@@ -1,6 +1,6 @@
-package eu.bidulaxstudio.spectathor.listeners;
+package eu.bidulman.spectathor.listeners;
 
-import eu.bidulaxstudio.spectathor.SpectaThor;
+import eu.bidulman.spectathor.SpectaThor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
