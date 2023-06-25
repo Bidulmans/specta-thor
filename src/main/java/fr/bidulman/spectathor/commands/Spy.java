@@ -1,6 +1,6 @@
-package eu.bidulman.spectathor.commands;
+package fr.bidulman.spectathor.commands;
 
-import eu.bidulman.spectathor.SpectaThor;
+import fr.bidulman.spectathor.SpectaThor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

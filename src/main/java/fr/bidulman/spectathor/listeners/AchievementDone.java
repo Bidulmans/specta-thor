@@ -1,4 +1,4 @@
-package eu.bidulman.spectathor.listeners;
+package fr.bidulman.spectathor.listeners;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
