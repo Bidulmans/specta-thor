@@ -1,5 +1,6 @@
 package fr.bidulman.spectathor;
 
+import com.google.common.base.Strings;
 import fr.bidulman.spectathor.commands.Back;
 import fr.bidulman.spectathor.commands.Spy;
 import fr.bidulman.spectathor.listeners.AchievementDone;
@@ -40,6 +41,7 @@ public class SpectaThor extends JavaPlugin {
     }
 
     public void sendPluginMessage(CommandSender target, String message) {
+        if (Strings.isNullOrEmpty(message)) return;
         if (target instanceof Player player) {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
         } else {
